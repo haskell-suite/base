@@ -270,5 +270,4 @@ addMVarFinalizer = GHC.MVar.addMVarFinalizer
 -- | Make a 'Weak' pointer to an 'MVar', using the second argument as
 -- a finalizer to run when 'MVar' is garbage-collected
 mkWeakMVar :: MVar a -> IO () -> IO (Weak (MVar a))
-mkWeakMVar m@(MVar m#) f = IO $ \s ->
-  case mkWeak# m# m f s of (# s1, w #) -> (# s1, Weak w #)
+mkWeakMVar m@(MVar m#) f = undefined
