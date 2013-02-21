@@ -60,6 +60,9 @@ compilerName = "hugs"
 compilerVersionRaw = 0  -- ToDo
 
 #else
-#error Unknown compiler name
+os = "unknown"
+arch = "unknown"
+compilerName = "unknown"
+compilerVersionRaw = 0
 #endif
 
