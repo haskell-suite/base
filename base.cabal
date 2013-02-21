@@ -228,7 +228,7 @@ Library {
         cbits/primFloat.c
         cbits/md5.c
         cbits/sysconf.c
-    include-dirs: include
+    include-dirs: include /home/feuerbach/source/ghc/includes/
     includes:    HsBase.h
     install-includes:    HsBase.h HsBaseConfig.h EventConfig.h WCsubst.h consUtils.h Typeable.h OldTypeable.h
     if os(windows) {
