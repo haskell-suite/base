@@ -117,7 +117,7 @@ INTEGRAL_TYPE(CDev,tyConCDev,"CDev",HTYPE_DEV_T)
 #if defined(HTYPE_INO_T)
 INTEGRAL_TYPE(CIno,tyConCIno,"CIno",HTYPE_INO_T)
 #endif
-#if defined(HTYPE_MODE_T)
+#if defined(HTYPE_MODE_T) && false
 INTEGRAL_TYPE_WITH_CTYPE(CMode,mode_t,tyConCMode,"CMode",HTYPE_MODE_T)
 #endif
 #if defined(HTYPE_OFF_T)
