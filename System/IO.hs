@@ -509,13 +509,13 @@ openTempFile' loc tmp_dir template binary mode = do
          -- beginning with '.' as the second component.
          _                      -> error "bug in System.IO.openTempFile"
 
-#if defined(__GLASGOW_HASKELL__)
     findTempName x = do
       r <- openNewFile filepath binary mode
       case r of
         FileExists -> findTempName (x + 1)
         OpenNewError errno -> ioError (errnoToIOError loc errno Nothing (Just tmp_dir))
         NewFileCreated fd -> do
+#if defined(__GLASGOW_HASKELL__)
           (fD,fd_type) <- FD.mkFD fd ReadWriteMode Nothing{-no stat-}
                                False{-is_socket-}
                                True{-is_nonblock-}
@@ -525,8 +525,8 @@ openTempFile' loc tmp_dir template binary mode = do
 
           return (filepath, h)
 #else
-         h <- fdToHandle fd `onException` c_close fd
-         return (filepath, h)
+          h <- fdToHandle fd `onException` c_close fd
+          return (filepath, h)
 #endif
 
       where
