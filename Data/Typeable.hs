@@ -100,7 +100,7 @@ cast x = if typeRep (Proxy :: Proxy a) == typeRep (Proxy :: Proxy b)
            else Nothing
 
 -- | A flexible variation parameterised in a type constructor
-gcast :: (Typeable (a :: *), Typeable b) => c a -> Maybe (c b)
+gcast :: (Typeable a, Typeable b) => c a -> Maybe (c b)
 gcast x = r
  where
   r = if typeRep (getArg x) == typeRep (getArg (fromJust r))
@@ -110,14 +110,14 @@ gcast x = r
   getArg = undefined
 
 -- | Cast for * -> *
-gcast1 :: forall c t t' a. (Typeable (t :: * -> *), Typeable t')
+gcast1 :: forall c t t' a. (Typeable t, Typeable t')
        => c (t a) -> Maybe (c (t' a)) 
 gcast1 x = if typeRep (Proxy :: Proxy t) == typeRep (Proxy :: Proxy t')
              then Just $ unsafeCoerce x
              else Nothing
 
 -- | Cast for * -> * -> *
-gcast2 :: forall c t t' a b. (Typeable (t :: * -> * -> *), Typeable t')
+gcast2 :: forall c t t' a b. (Typeable t, Typeable t')
        => c (t a b) -> Maybe (c (t' a b)) 
 gcast2 x = if typeRep (Proxy :: Proxy t) == typeRep (Proxy :: Proxy t')
              then Just $ unsafeCoerce x
