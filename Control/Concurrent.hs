@@ -341,9 +341,8 @@ forkOS action0
 -- safe to use foreign libraries that rely on thread-local state from the
 -- calling thread.
 isCurrentThreadBound :: IO Bool
-isCurrentThreadBound = IO $ \ s# ->
-    case isCurrentThreadBound# s# of
-        (# s2#, flg #) -> (# s2#, not (flg ==# 0#) #)
+isCurrentThreadBound = undefined
+
 
 
 {- | 
