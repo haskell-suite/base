@@ -65,12 +65,6 @@ badHead = errorEmptyList "head"
 
 -- This rule is useful in cases like 
 --      head [y | (x,y) <- ps, x==t]
-{-# RULES
-"head/build"    forall (g::forall b.(a->b->b)->b->b) .
-                head (build g) = g (\x _ -> x) badHead
-"head/augment"  forall xs (g::forall b. (a->b->b) -> b -> b) . 
-                head (augment g xs) = g (\x _ -> x) (head xs)
- #-}
 
 -- | Extract the elements after the head of a list, which must be non-empty.
 tail                    :: [a] -> [a]
@@ -516,12 +510,6 @@ or (x:xs)       =  x || or xs
 {-# NOINLINE [1] and #-}
 {-# NOINLINE [1] or #-}
 
-{-# RULES
-"and/build"     forall (g::forall b.(Bool->b->b)->b->b) . 
-                and (build g) = g (&&) True
-"or/build"      forall (g::forall b.(Bool->b->b)->b->b) . 
-                or (build g) = g (||) False
- #-}
 #endif
 
 -- | Applied to a predicate and a list, 'any' determines if any element
@@ -548,12 +536,6 @@ all p (x:xs)    =  p x && all p xs
 {-# NOINLINE [1] any #-}
 {-# NOINLINE [1] all #-}
 
-{-# RULES
-"any/build"     forall p (g::forall b.(a->b->b)->b->b) . 
-                any p (build g) = g ((||) . p) False
-"all/build"     forall p (g::forall b.(a->b->b)->b->b) . 
-                all p (build g) = g ((&&) . p) True
- #-}
 #endif
 
 -- | 'elem' is the list membership predicate, usually written in infix form,
@@ -650,13 +632,6 @@ foldr2_right  k _z  y  r (x:xs) = k x y (r xs)
 
 -- foldr2 k z xs ys = foldr (foldr2_left k z)  (\_ -> z) xs ys
 -- foldr2 k z xs ys = foldr (foldr2_right k z) (\_ -> z) ys xs
-{-# RULES
-"foldr2/left"   forall k z ys (g::forall b.(a->b->b)->b->b) . 
-                  foldr2 k z (build g) ys = g (foldr2_left  k z) (\_ -> z) ys
-
-"foldr2/right"  forall k z xs (g::forall b.(a->b->b)->b->b) . 
-                  foldr2 k z xs (build g) = g (foldr2_right k z) (\_ -> z) xs
- #-}
 \end{code}
 
 The foldr2/right rule isn't exactly right, because it changes
