@@ -24,14 +24,3 @@
 module GHC.PArr where
 
 import GHC.Base
-
--- Representation of parallel arrays
---
--- Vanilla representation of parallel Haskell based on standard GHC arrays that is used if the
--- vectorised is /not/ used.
---
--- NB: This definition *must* be kept in sync with `TysWiredIn.parrTyCon'!
---
-data [::] e = PArr !Int (Array# e)
-
-type PArr = [::]   -- this synonym is to get access to '[::]' without using the special syntax
