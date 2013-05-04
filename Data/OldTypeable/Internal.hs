@@ -562,8 +562,8 @@ libraries/base/Data/Typeable.hs:674:1:
       The last argument of the instance must be a data or newtype application
     In the stand-alone deriving instance for `Typeable RealWorld'
 -}
-realWorldTc :: TyCon; \
-realWorldTc = mkTyCon3 "ghc-prim" "GHC.Types" "RealWorld"; \
+realWorldTc :: TyCon
+realWorldTc = mkTyCon3 "ghc-prim" "GHC.Types" "RealWorld"
 instance Typeable RealWorld where { typeOf _ = mkTyConApp realWorldTc [] }
 
 #endif
