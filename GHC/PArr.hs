@@ -25,6 +25,7 @@ module GHC.PArr where
 
 import GHC.Base
 
+{-
 -- Representation of parallel arrays
 --
 -- Vanilla representation of parallel Haskell based on standard GHC arrays that is used if the
@@ -35,3 +36,4 @@ import GHC.Base
 data [::] e = PArr !Int (Array# e)
 
 type PArr = [::]   -- this synonym is to get access to '[::]' without using the special syntax
+-}
