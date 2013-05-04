@@ -5,6 +5,8 @@
            , ScopedTypeVariables
            , ForeignFunctionInterface
            , FlexibleInstances
+           , FlexibleContexts
+           , KindSignatures
            , PolyKinds
   #-}
 {-# OPTIONS_GHC -funbox-strict-fields #-}
