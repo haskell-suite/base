@@ -156,8 +156,9 @@ foreign import WINDOWS_CCONV unsafe "GetCurrentProcess" getCurrentProcess :: IO 
 foreign import WINDOWS_CCONV unsafe "GetProcessTimes" getProcessTimes :: Ptr HANDLE -> Ptr FILETIME -> Ptr FILETIME -> Ptr FILETIME -> Ptr FILETIME -> IO CInt
 
 #endif /* not _WIN32 */
-#endif /* __GLASGOW_HASKELL__ */
-
+#else /* not __GLASGOW_HASKELL__ */
+getCPUTime = getCPUTime
+#endif /* not __GLASGOW_HASKELL__ */
 -- |The 'cpuTimePrecision' constant is the smallest measurable difference
 -- in CPU time that the implementation can record, and is given as an
 -- integral number of picoseconds.
