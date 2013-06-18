@@ -57,7 +57,7 @@ module GHC.Exts
         currentCallStack,
 
         -- * The Constraint kind
-        Constraint,
+        -- Constraint,
         
         -- * Overloaded lists
         IsList(..)
