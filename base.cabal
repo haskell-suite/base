@@ -28,7 +28,7 @@ Flag integer-simple
     Description: Use integer-simple
 
 Library {
-        build-depends: ghc-prim
+        build-depends: ghc-prim, integer-simple
     -- if impl(ghc) {
     --     if flag(integer-simple)
     --         build-depends: integer-simple
